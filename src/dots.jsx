@@ -52,7 +52,7 @@ export var Dots = React.createClass({
       var leftBound = (i * this.props.slidesToScroll);
       var rightBound = (i * this.props.slidesToScroll) + (this.props.slidesToScroll - 1);
       var className = classnames({
-        'slick-active': (this.props.currentSlide >= leftBound) && (this.props.currentSlide <= rightBound)
+        'slick-active': (this.props.currentSlide >= leftBound) && (this.props.currentSlide <= rightBound),
         'slick-displayed': this.isDisplayed(i, dotCount)
       });
 
