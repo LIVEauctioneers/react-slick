@@ -1,9 +1,8 @@
 'use strict';
 
-var React = require('react');
-var ReactDOM = require('../src/mixins/ReactDOM');
-var Docs = require('./docs');
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Docs from './docs'
 
 React.initializeTouchEvents && React.initializeTouchEvents(true);
 ReactDOM.render(<Docs />, document.getElementById('rapp'));
-

@@ -1,6 +1,6 @@
 var defaultProps = {
     className: '',
-    // accessibility: true,
+    accessibility: true,
     adaptiveHeight: false,
     arrows: true,
     autoplay: false,
@@ -18,7 +18,7 @@ var defaultProps = {
     infinite: true,
     initialSlide: 0,
     lazyLoad: false,
-    pauseOnHover: false,
+    pauseOnHover: true,
     responsive: null,
     rtl: false,
     slide: 'div',

@@ -6,11 +6,11 @@ import classnames from 'classnames';
 export var PrevArrow = React.createClass({
 
   clickHandler: function (options, e) {
-    e.preventDefault();
+    if (e) { e.preventDefault(); }
     this.props.clickHandler(options, e);
   },
   render: function () {
-    var prevClasses = {'slick-prev': true};
+    var prevClasses = {'slick-arrow': true, 'slick-prev': true};
     var prevHandler = this.clickHandler.bind(this, {message: 'previous'});
 
     if (!this.props.infinite && (this.props.currentSlide === 0 || this.props.slideCount <= this.props.slidesToShow)) {
@@ -40,11 +40,11 @@ export var PrevArrow = React.createClass({
 
 export var NextArrow = React.createClass({
   clickHandler: function (options, e) {
-    e.preventDefault();
+    if (e) { e.preventDefault(); }
     this.props.clickHandler(options, e);
   },
   render: function () {
-    var nextClasses = {'slick-next': true};
+    var nextClasses = {'slick-arrow': true, 'slick-next': true};
     var nextHandler = this.clickHandler.bind(this, {message: 'next'});
 
     if (!this.props.infinite) {
