@@ -354,8 +354,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	   */
 	  buildLazyLoadList: function buildLazyLoadList(props) {
 	    var lazyLoadedList = [];
-	    for (var i = 0; i < _react2.default.Children.count(this.props.children); i++) {
-	      if (i >= this.state.currentSlide && i < this.state.currentSlide + this.props.slidesToShow) {
+	    for (var i = 0; i < _react2.default.Children.count(props.children); i++) {
+	      if (i >= this.state.currentSlide && i < this.state.currentSlide + props.slidesToShow) {
 	        lazyLoadedList.push(i);
 	      }
 	    }
