@@ -39,6 +39,20 @@ export var InnerSlider = React.createClass({
     });
     
     this.updateLazyLoadListIfNeeded(this.props);
+
+    if (this.props.lazyLoad) {
+      var lazyLoadedList = [];
+
+      for (var i = 0; i < React.Children.count(this.props.children); i++) {
+        if (i >= this.state.currentSlide && i < this.state.currentSlide + this.props.slidesToShow) {
+          lazyLoadedList.push(i);
+        }
+      }
+
+      this.setState({
+        lazyLoadedList: this.getLazyLoadedList(this.state.currentSlide, lazyLoadedList)
+      });
+    }
   },
   componentDidMount: function componentDidMount() {
     // Hack for autoplay -- Inspect Later
@@ -69,6 +83,13 @@ export var InnerSlider = React.createClass({
     }
   },
   componentWillReceiveProps: function(nextProps) {
+    // lazyLoad
+    if (nextProps.lazyLoad && nextProps.preLoad != this.props.preLoad) {
+      this.setState({
+        lazyLoadedList: this.getLazyLoadedList(this.state.currentSlide, null, nextProps)
+      });
+    }
+
     if (this.props.slickGoTo != nextProps.slickGoTo) {
       if (process.env.NODE_ENV !== 'production') {
         console.warn('react-slick deprecation warning: slickGoTo prop is deprecated and it will be removed in next release. Use slickGoTo method instead')
