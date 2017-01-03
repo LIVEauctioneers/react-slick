@@ -2112,7 +2112,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    canUseDOM && enquire.register(query, handler);
 
-	    // Queue the handlers to unregister them at unmount
+	    // Queue the handlers to unregister them at unmount  
 	    if (! this._responsiveMediaHandlers) {
 	      this._responsiveMediaHandlers = [];
 	    }
@@ -2319,7 +2319,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * removes the given handler from the collection, and calls it's destroy methods
-	         *
+	         * 
 	         * @param {object || function} handler the handler to remove
 	         */
 	        removeHandler : function(handler) {
@@ -2334,7 +2334,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * Determine whether the media query should be considered a match
-	         *
+	         * 
 	         * @return {Boolean} true if media query can be considered a match, false otherwise
 	         */
 	        matches : function() {
