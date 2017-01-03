@@ -1213,10 +1213,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	  },
 	  getWidth: function getWidth(elem) {
-	    return elem.getBoundingClientRect().width || elem.offsetWidth;
+	    return elem.getBoundingClientRect().width || elem.offsetWidth || 0;
 	  },
 	  getHeight: function getHeight(elem) {
-	    return elem.getBoundingClientRect().height || elem.offsetHeight;
+	    return elem.getBoundingClientRect().height || elem.offsetHeight || 0;
 	  },
 
 	  adaptHeight: function adaptHeight() {
