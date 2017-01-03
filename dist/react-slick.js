@@ -412,6 +412,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    if (this.props.dots === true && this.state.slideCount >= this.props.slidesToShow) {
 	      var dotProps = {
+	        infinite: this.props.infinite,
+	        centerMode: this.props.centerMode,
 	        dotsClass: this.props.dotsClass,
 	        slideCount: this.state.slideCount,
 	        slidesToShow: this.props.slidesToShow,
@@ -1323,6 +1325,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      } else {
 	        currentSlide = targetSlide - this.state.slideCount;
 	      }
+	    } else if (targetSlide >= this.state.slideCount - this.props.slidesToShow && this.props.infinite === false) {
+	      currentSlide = this.state.slideCount - this.props.slidesToShow;
 	    } else {
 	      currentSlide = targetSlide;
 	    }
@@ -1847,6 +1851,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	    e.preventDefault();
 	    this.props.clickHandler(options);
 	  },
+
+	  isDisplayed: function isDisplayed(i, dotCount) {
+	    var currentSlide = this.props.currentSlide,
+
+	    //slideCount     = this.props.slideCount,
+	    slidesToScroll = this.props.slidesToScroll,
+	        slidesToShow = this.props.slidesToShow;
+
+	    var displayAllDotSlides = slidesToShow % slidesToScroll === 0;
+
+	    if (this.props.centerMode || this.props.infinite || dotCount == slidesToShow || !displayAllDotSlides) {
+	      return currentSlide === i * slidesToScroll;
+	    }
+
+	    var dotSlidesDisplayeds = i >= currentSlide && i < currentSlide + slidesToShow,
+	        dotSlidesBetweenDisplayeds = i >= dotCount - slidesToShow && currentSlide >= dotCount - slidesToShow;
+
+	    return dotSlidesDisplayeds || dotSlidesBetweenDisplayeds;
+	  },
+
 	  render: function render() {
 	    var _this = this;
 
@@ -1863,7 +1887,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var leftBound = i * _this.props.slidesToScroll;
 	      var rightBound = i * _this.props.slidesToScroll + (_this.props.slidesToScroll - 1);
 	      var className = (0, _classnames2.default)({
-	        'slick-active': _this.props.currentSlide >= leftBound && _this.props.currentSlide <= rightBound
+	        'slick-active': _this.props.currentSlide >= leftBound && _this.props.currentSlide <= rightBound,
+	        'slick-displayed': _this.isDisplayed(i, dotCount)
 	      });
 
 	      var dotOptions = {
@@ -2087,7 +2112,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    canUseDOM && enquire.register(query, handler);
 
-	    // Queue the handlers to unregister them at unmount  
+	    // Queue the handlers to unregister them at unmount
 	    if (! this._responsiveMediaHandlers) {
 	      this._responsiveMediaHandlers = [];
 	    }
@@ -2294,7 +2319,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * removes the given handler from the collection, and calls it's destroy methods
-	         * 
+	         *
 	         * @param {object || function} handler the handler to remove
 	         */
 	        removeHandler : function(handler) {
@@ -2309,7 +2334,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        /**
 	         * Determine whether the media query should be considered a match
-	         * 
+	         *
 	         * @return {Boolean} true if media query can be considered a match, false otherwise
 	         */
 	        matches : function() {
